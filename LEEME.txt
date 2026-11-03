@@ -1,0 +1,39 @@
+MEDICIÓN DE PRESIÓN · CUADERNO INTERACTIVO
+Instrumentación Industrial · Tecnología en Electrónica
+Universidad del Valle, sede Cartago · Dra. María Elena Leyes
+
+ESTRUCTURA
+  index.html              Página principal del cuaderno (21 secciones)
+  css/
+    estilos.css           Estilos del cuaderno (tema rojo Univalle, claro y oscuro)
+    fuentes.css           Declaración de las tipografías
+    fuentes/              Fraunces, Manrope y JetBrains Mono (.woff2)
+  js/
+    core.js               Unidades, atmósfera ISA, fluidos, diafragma con galgas,
+                          sensores MPX, bancos de medición y plano estilo GeoGebra
+    app.js                Navegación, simuladores, laboratorio, ejercicios e informe PDF
+    mathjax-config.js     Configuración de las ecuaciones
+    lib/                  MathJax 3.2.2, jsPDF 2.5.1 y jsPDF-AutoTable 3.8.2
+  img/
+    favicon.svg           Ícono de la pestaña del navegador
+    logo-presion.svg      Logotipo del encabezado
+    tipos-presion.svg     Referencias absoluta, manométrica y de vacío
+    manometro-u.svg       Manómetro en U
+    bourdon.svg           Mecanismo del manómetro Bourdon
+    diafragma-galgas.svg  Diafragma con galgas en puente completo
+
+CÓMO PUBLICARLO
+  Sube la carpeta completa al servidor sin cambiar los nombres ni la estructura.
+  El enlace para compartir es la dirección de la carpeta, por ejemplo:
+    https://servidor.univalle.edu.co/presion-industrial/
+
+  No necesita internet: todas las librerías y fuentes están incluidas.
+  Abrir index.html con doble clic también funciona.
+
+DATOS DE LOS ESTUDIANTES
+  Las lecturas, el análisis y las respuestas se guardan en el navegador de cada
+  estudiante. No se envían al servidor. Los datos de este cuaderno no se mezclan
+  con los del cuaderno de temperatura, aunque estén en el mismo servidor.
+
+La herramienta docente (Herramienta_docente_Presion.html) va aparte
+y NO debe subirse a esta carpeta.

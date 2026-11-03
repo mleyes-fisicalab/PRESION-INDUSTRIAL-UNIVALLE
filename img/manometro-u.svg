@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+<title>Manómetro en U</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+<rect width="360" height="300" rx="10" fill="#ffffff"/>
+<path d="M110 40V230a35 35 0 0 0 70 0V40" fill="none" stroke="#5e5a63" stroke-width="22" stroke-linecap="butt"/>
+<path d="M110 40V230a35 35 0 0 0 70 0V40" fill="none" stroke="#ffffff" stroke-width="16"/>
+<path d="M110 170V230a35 35 0 0 0 70 0V100" fill="none" stroke="#1f6fd6" stroke-width="16"/>
+<line x1="96" y1="170" x2="124" y2="170" stroke="#1d1a1f" stroke-width="1.5"/>
+<line x1="166" y1="100" x2="194" y2="100" stroke="#1d1a1f" stroke-width="1.5"/>
+<line x1="124" y1="170" x2="250" y2="170" stroke="#1d1a1f" stroke-dasharray="4 4"/>
+<line x1="194" y1="100" x2="250" y2="100" stroke="#1d1a1f" stroke-dasharray="4 4"/>
+<line x1="240" y1="166" x2="240" y2="104" stroke="#b5121b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="250" y="140" font-size="18" font-style="italic" font-weight="700" fill="#b5121b">h</text>
+<line x1="110" y1="8" x2="110" y2="32" stroke="#b5121b" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="84" y="22" font-size="15" font-weight="700" fill="#1d1a1f">P₁</text>
+<line x1="180" y1="8" x2="180" y2="32" stroke="#b5121b" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="190" y="22" font-size="15" font-weight="700" fill="#1d1a1f">P₂</text>
+<text x="196" y="236" font-size="12" fill="#1f6fd6">líquido manométrico ρₘ</text>
+<text x="14" y="288" font-size="12" fill="#5e5a63">P₁ &gt; P₂ : el líquido baja en la rama de mayor presión</text>
+</svg>

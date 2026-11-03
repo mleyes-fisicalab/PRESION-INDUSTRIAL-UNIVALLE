@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Manometría Industrial Interactiva</title>
+<meta name="author" content="Dra. María Elena Leyes">
+<meta name="description" content="Cuaderno interactivo de Instrumentación Industrial: tipos de presión y unidades, principio hidrostático y transductores de presión. Universidad del Valle, sede Cartago.">
+<meta name="theme-color" content="#b5121b">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fuentes.css">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="app">
+<aside class="side" id="side" aria-label="Índice del cuaderno">
+  <div class="side-in">
+    <div class="brand">
+      <span class="uv">Universidad del Valle</span>
+      <div class="mark">
+        <img src="img/logo-presion.svg" alt="" width="34" height="34">
+        <b>Medición de<br>Presión</b>
+      </div>
+      <small>Instrumentación Industrial · <span class="nw">2026-2</span></small>
+    </div>
+    <nav class="toc" id="toc"></nav>
+    <div class="side-foot">Dra. María Elena Leyes<br>Universidad del Valle · Sede Cartago</div>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<div class="main">
+  <header class="top">
+    <button class="ibtn menu-btn" id="menuBtn" aria-label="Abrir índice"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="where"><small id="secName">Presentación</small><b id="pageName">Portada</b></div>
+    <span class="count" id="count">1 / 21</span>
+    <button class="ibtn" id="prevBtn" aria-label="Página anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="ibtn" id="nextBtn" aria-label="Página siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="ibtn" id="themeBtn" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+    <div class="progress"><i id="prog"></i></div>
+  </header>
+
+  <div class="book" id="book">
+
+<!-- ================= PORTADA ================= -->
+<section class="page" id="portada" data-sec="Presentación" data-title="Portada">
+  <div class="hero">
+    <p class="eyebrow">Universidad del Valle · Sede Cartago · Tecnología en Electrónica</p>
+    <h1>Medición de presión en <em>procesos industriales</em></h1>
+    <p class="lead">Cuaderno interactivo de prácticas experimentales para Instrumentación Industrial. Recorre los tipos de presión y sus unidades, el principio hidrostático y los transductores que convierten la presión en una señal eléctrica, hasta el lazo de 4–20 mA.</p>
+    <div class="sensors">
+      <div class="sensor" style="--c:var(--c-a)"><h3>Tipos y unidades</h3><div class="k">1 bar</div><div class="u">= 100 kPa = 14,504 psi · en Cartago la atmósfera vale ≈ 90,8 kPa</div></div>
+      <div class="sensor" style="--c:var(--c-b)"><h3>Principio hidrostático</h3><div class="k">9,79 kPa</div><div class="u">por cada metro de columna de agua · P = ρ g h</div></div>
+      <div class="sensor" style="--c:var(--c-c)"><h3>Transductores</h3><div class="k">2 mV/V</div><div class="u">salida típica a plena escala de un diafragma con galgas en puente completo</div></div>
+    </div>
+    <h2>Ruta del cuaderno</h2>
+    <div class="route" id="route"></div>
+    <div class="byline">
+      <div><b>Autora</b>Dra. María Elena Leyes</div>
+      <div><b>Asignatura</b>Instrumentación Industrial</div>
+      <div><b>Programa</b>Tecnología en Electrónica</div>
+      <div><b>Periodo</b>Agosto – diciembre 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUÍA ================= -->
+<section class="page" id="guia" data-sec="Presentación" data-title="Guía de la práctica" hidden>
+  <p class="eyebrow">Guía de laboratorio</p>
+  <h1>Medición y transducción de presión</h1>
+  <p class="lead">La práctica tiene dos partes: una exploración guiada con simuladores y un laboratorio virtual en el que cada estudiante recibe un banco con instrumentos que tienen sus propios errores, como ocurre con los equipos reales.</p>
+  <h2>Objetivo general</h2>
+  <p>Medir la presión como variable de proceso, relacionar sus tipos y unidades, verificar experimentalmente el principio hidrostático y caracterizar los transductores que la convierten en una señal eléctrica normalizada.</p>
+  <h2>Objetivos específicos</h2>
+  <ol>
+    <li>Distinguir presión absoluta, manométrica, diferencial y de vacío, y convertir entre las unidades de uso industrial.</li>
+    <li>Calibrar un manómetro Bourdon contra una balanza de pesos muertos y determinar su error, su histéresis y su clase de exactitud.</li>
+    <li>Verificar la relación \(P = \rho g h\) y determinar la densidad de un líquido desconocido a partir de mediciones de presión y nivel.</li>
+    <li>Caracterizar un sensor piezorresistivo integrado leído con un ADC, compararlo con su hoja de datos y escalarlo a un lazo de 4–20 mA.</li>
+    <li>Redactar un informe técnico con los resultados y entregarlo en PDF.</li>
+  </ol>
+  <h2>Equipos de referencia</h2>
+  <p>El laboratorio virtual reproduce este montaje. Si la sede cuenta con los equipos, la misma guía sirve para la práctica presencial.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Equipo</th><th>Especificación sugerida</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td>Balanza de pesos muertos</td><td>Pistón de 1,0000 cm², juego de masas de 0,5 kg, aceite como medio</td><td>Práctica 1</td></tr>
+      <tr><td>Manómetro Bourdon</td><td>Carátula de 100 mm, 0–10 bar, clase 1,0 (EN 837-1)</td><td>Práctica 1</td></tr>
+      <tr><td>Columna de líquido</td><td>Tubo de acrílico de 1,2 m con regla milimetrada y toma en el fondo</td><td>Práctica 2</td></tr>
+      <tr><td>Manómetro digital</td><td>0–20 kPa, resolución 0,01 kPa</td><td>Práctica 2</td></tr>
+      <tr><td>Manómetro en U</td><td>Mercurio o líquido manométrico, escala en mm</td><td>Práctica 2</td></tr>
+      <tr><td>Barómetro digital</td><td>Resolución 0,01 kPa</td><td>Prácticas 2 y 3</td></tr>
+      <tr><td>Calibrador de presión</td><td>Bomba manual con patrón digital, 0–700 kPa</td><td>Práctica 3</td></tr>
+      <tr><td>Sensor piezorresistivo</td><td>MPX5700AP (absoluto, 15–700 kPa, salida 0,2–4,7 V)</td><td>Práctica 3</td></tr>
+      <tr><td>Microcontrolador</td><td>Arduino UNO, ADC de 10 bits con referencia en V<sub>cc</sub></td><td>Práctica 3</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Metodología</h2>
+  <ol class="steps">
+    <li><strong>Antes de la sesión.</strong> Lee las secciones I a V y explora los simuladores. Responde las preguntas orientadoras de cada práctica.</li>
+    <li><strong>Durante la sesión.</strong> Identifícate en el laboratorio virtual con tu código estudiantil. Ese código define tu banco, así que tus datos serán distintos a los de tus compañeros.</li>
+    <li><strong>Registro.</strong> Toma las lecturas que pide cada práctica, ejecuta el análisis y escribe tu interpretación en los campos de cada página.</li>
+    <li><strong>Después de la sesión.</strong> Resuelve los ejercicios y descarga el informe en PDF desde la sección VIII.</li>
+  </ol>
+  <div class="callout warn"><b>Seguridad</b><p>En la práctica presencial, nunca desconectes una manguera ni un manómetro con el sistema presurizado: alivia primero la presión con la válvula de venteo. No superes el rango del instrumento y usa gafas de seguridad. El mercurio es tóxico; si un manómetro en U se rompe, informa al docente y no lo limpies con la mano.</p></div>
+</section>
+
+<!-- ================= CADENA ================= -->
+<section class="page" id="cadena" data-sec="I · Fundamentos" data-title="Variable de proceso y cadena de medición" hidden>
+  <p class="eyebrow">Sección I · Fundamentos</p>
+  <h1>La presión como variable de proceso</h1>
+  <p class="lead">La presión es la fuerza que un fluido ejerce por unidad de área, \(P = F/A\). Se mide en casi todos los procesos: calderas, redes de aire comprimido, bombas, filtros, reactores y, de forma indirecta, para conocer el nivel y el caudal.</p>
+  <h2>Sensor, transductor y transmisor</h2>
+  <div class="grid3">
+    <div class="card"><h3 style="margin-top:0">Elemento primario</h3><p>Recibe la presión y se deforma: tubo Bourdon, fuelle o diafragma. En la norma ISA-5.1 el elemento primario de presión se identifica como <span class="tag">PE</span>.</p></div>
+    <div class="card"><h3 style="margin-top:0">Transductor</h3><p>Convierte la deformación en una magnitud eléctrica: galgas extensiométricas, piezorresistencias de silicio, condensadores o cristales piezoeléctricos.</p></div>
+    <div class="card"><h3 style="margin-top:0">Transmisor</h3><p>Acondiciona la señal y la envía como 4–20 mA. Se identifica como <span class="tag">PT</span>; si además tiene indicación local, <span class="tag">PIT</span>.</p></div>
+  </div>
+  <h2>Recorrido de la señal</h2>
+  <p>Mueve la presión de la línea de vapor y observa la señal en cada etapa. El transductor es un diafragma con galgas de 2 mV/V a plena escala, excitado con 10 V; el amplificador tiene ganancia 250 y el transmisor está calibrado de 0 a 1000 kPa. Toca cada bloque para ver su función.</p>
+  <div class="card">
+    <div class="ctrl"><label for="ch-T">Presión manométrica en la línea <output id="ch-To"></output></label><input type="range" id="ch-T" min="0" max="1000" step="5" value="620"></div>
+    <div class="chain" id="chain">
+      <button class="node on" data-i="0"><span class="tagisa">Proceso</span><b>Línea de vapor</b><span class="val" id="ch-v0">—</span></button>
+      <button class="node" data-i="1"><span class="tagisa">PE-201</span><b>Diafragma con galgas</b><span class="val" id="ch-v1">—</span></button>
+      <button class="node" data-i="2"><span class="tagisa">Puente + INA</span><b>Acondicionamiento</b><span class="val" id="ch-v2">—</span></button>
+      <button class="node" data-i="3"><span class="tagisa">PT-201</span><b>Transmisor 4–20 mA</b><span class="val" id="ch-v3">—</span></button>
+      <button class="node" data-i="4"><span class="tagisa">PIC-201</span><b>Indicador / controlador</b><span class="val" id="ch-v4">—</span></button>
+    </div>
+    <p id="ch-desc" class="muted" style="margin:0"></p>
+  </div>
+  <div class="callout"><b>Para el informe</b><p>Dibuja el diagrama P&amp;ID de este lazo con la simbología ISA-5.1 e indica qué tipo de señal viaja por cada línea: presión del proceso, milivoltios, voltios, corriente de 4–20 mA.</p></div>
+</section>
+
+<!-- ================= CARACTERÍSTICAS ================= -->
+<section class="page" id="caract" data-sec="I · Fundamentos" data-title="Características y selección del rango" hidden>
+  <p class="eyebrow">Sección I · Fundamentos</p>
+  <h1>Características estáticas y selección del rango</h1>
+  <p class="lead">Un manómetro bien elegido trabaja en la zona central de su escala. Si el rango es demasiado grande, el error en kilopascales crece; si es demasiado pequeño, el elemento elástico se fatiga y pierde la calibración.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Término</th><th>Definición</th><th>Ejemplo en presión</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Rango</strong></td><td>Valores entre el límite inferior (LRV) y el superior (URV).</td><td>0 a 10 bar</td></tr>
+      <tr><td><strong>Alcance (span)</strong></td><td>Diferencia URV − LRV.</td><td>1000 kPa</td></tr>
+      <tr><td><strong>Sensibilidad</strong></td><td>Cambio de la salida por unidad de presión.</td><td>2 mV/V a plena escala</td></tr>
+      <tr><td><strong>Exactitud (clase)</strong></td><td>Error máximo permitido, en % del alcance.</td><td>Clase 1,0 → ±10 kPa en 0–10 bar</td></tr>
+      <tr><td><strong>Histéresis</strong></td><td>Diferencia entre la lectura subiendo y bajando en el mismo punto.</td><td>4 kPa a mitad de escala</td></tr>
+      <tr><td><strong>Repetibilidad</strong></td><td>Dispersión de lecturas repetidas en las mismas condiciones.</td><td>0,1 % del alcance</td></tr>
+      <tr><td><strong>Sobrepresión</strong></td><td>Presión máxima que soporta sin daño permanente.</td><td>1,3 veces el URV</td></tr>
+      <tr><td><strong>Estabilidad</strong></td><td>Deriva de la calibración con el tiempo.</td><td>0,1 % del URV por año</td></tr>
+    </tbody>
+  </table></div>
+  <div class="formula">\[ e_{\%\,\text{span}} = \frac{P_{\text{leída}} - P_{\text{patrón}}}{\text{URV} - \text{LRV}} \times 100 \qquad\qquad \text{error admisible} = \pm\,\frac{\text{clase}}{100}\,(\text{URV} - \text{LRV}) \]</div>
+  <h2>Clases de exactitud de manómetros (EN 837-1)</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Clase</th><th class="num">0,1</th><th class="num">0,25</th><th class="num">0,6</th><th class="num">1,0</th><th class="num">1,6</th><th class="num">2,5</th><th class="num">4,0</th></tr></thead>
+    <tbody>
+      <tr><td>Error admisible en 0–10 bar</td><td class="num">±1 kPa</td><td class="num">±2,5 kPa</td><td class="num">±6 kPa</td><td class="num">±10 kPa</td><td class="num">±16 kPa</td><td class="num">±25 kPa</td><td class="num">±40 kPa</td></tr>
+      <tr><td>Uso típico</td><td colspan="3">Patrones y laboratorio</td><td colspan="2">Industria, procesos</td><td colspan="2">Servicios generales</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Selección del rango</h2>
+  <p>La norma EN 837-2 recomienda que la presión de trabajo no supere el 75 % del valor final de la escala con carga estable, ni el 66 % con carga pulsante, como la descarga de una bomba de pistones. Elige una presión de trabajo y un rango estándar para evaluar la selección.</p>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="se-p">Presión de trabajo <output id="se-po"></output></label><input type="range" id="se-p" min="0.2" max="20" step="0.1" value="6.2"></div>
+      <div class="ctrl"><label for="se-r">Rango del manómetro</label><select id="se-r"><option value="1">0–1 bar</option><option value="1.6">0–1,6 bar</option><option value="2.5">0–2,5 bar</option><option value="4">0–4 bar</option><option value="6">0–6 bar</option><option value="10" selected>0–10 bar</option><option value="16">0–16 bar</option><option value="25">0–25 bar</option><option value="40">0–40 bar</option></select></div>
+      <div class="ctrl"><label for="se-c">Clase de exactitud</label><select id="se-c"><option value="0.6">0,6</option><option value="1" selected>1,0</option><option value="1.6">1,6</option><option value="2.5">2,5</option></select></div>
+      <label class="check"><input type="checkbox" id="se-pul"> Presión pulsante</label>
+      <div class="kpis" id="se-k"></div>
+    </div>
+    <div class="card dialbox"><div id="se-dial"></div><p id="se-msg" class="muted" style="margin:0;text-align:center"></p></div>
+  </div>
+</section>
+
+<!-- ================= TIPOS ================= -->
+<section class="page" id="tipos" data-sec="II · Tipos y unidades" data-title="Tipos de presión" hidden>
+  <p class="eyebrow">Sección II · Tipos de presión y unidades</p>
+  <h1>Una misma presión, cuatro referencias</h1>
+  <p class="lead">El valor de una presión depende del cero contra el que se compara. Confundir la referencia es uno de los errores más comunes al leer una hoja de datos o al configurar un transmisor.</p>
+  <div class="grid2 fig-row">
+    <figure class="fig"><img class="diagrama" src="img/tipos-presion.svg" alt="Diagrama de referencias de presión: cero absoluto, presión atmosférica, presión manométrica y vacío" width="420" height="300"><figcaption>Las presiones absoluta, manométrica y de vacío medidas desde sus referencias.</figcaption></figure>
+    <div class="stack">
+      <div><h3 style="margin-top:0">Absoluta</h3><p>Se mide desde el vacío perfecto. Nunca es negativa. Se usa en barómetros, en el cálculo de gases (\(PV = nRT\)) y en sensores marcados con <span class="tag">A</span> o <span class="tag">AP</span>.</p></div>
+      <div><h3>Manométrica (relativa)</h3><p>Se mide desde la presión atmosférica del lugar. Es la que indican casi todos los manómetros de planta y se marca con <span class="tag">G</span> o <span class="tag">GP</span>.</p></div>
+      <div><h3>De vacío</h3><p>Manométrica negativa: cuánto falta para llegar a la atmósfera. Un vacuómetro que indica −60 kPa en Cartago corresponde a unos 30,8 kPa absolutos.</p></div>
+      <div><h3>Diferencial</h3><p>Diferencia entre dos presiones del proceso, \(\Delta P = P_1 - P_2\). Se usa para medir caudal con placas de orificio, nivel en tanques y la caída de presión en filtros. Se marca <span class="tag">D</span> o <span class="tag">DP</span>.</p></div>
+    </div>
+  </div>
+  <div class="formula">\[ P_{\text{abs}} = P_{\text{atm}} + P_{\text{man}} \qquad\qquad P_{\text{vacío}} = P_{\text{atm}} - P_{\text{abs}} \qquad\qquad \Delta P = P_1 - P_2 \]</div>
+  <h2>La presión atmosférica depende de la altitud</h2>
+  <p>La atmósfera estándar internacional (ISA) da la presión media en función de la altitud \(h\) sobre el nivel del mar:</p>
+  <div class="formula">\[ P_{\text{atm}}(h) = 101{,}325\ \mathrm{kPa}\,\left(1 - 2{,}25577\times10^{-5}\,h\right)^{5{,}25588} \]<small>En Cartago (917 m) vale unos 90,8 kPa, y en Bogotá (2640 m), unos 73,4 kPa. El clima la hace variar ±1 kPa alrededor de ese valor.</small></div>
+  <h2>Unidades de uso industrial</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Unidad</th><th>Símbolo</th><th class="num">Equivale a</th><th>Dónde aparece</th></tr></thead>
+    <tbody>
+      <tr><td>pascal</td><td>Pa</td><td class="num">1 N/m²</td><td>Sistema Internacional</td></tr>
+      <tr><td>kilopascal</td><td>kPa</td><td class="num">1000 Pa</td><td>Transmisores, hojas de datos</td></tr>
+      <tr><td>bar</td><td>bar</td><td class="num">100 kPa</td><td>Manómetros europeos, neumática</td></tr>
+      <tr><td>libra por pulgada cuadrada</td><td>psi</td><td class="num">6,894757 kPa</td><td>Equipos estadounidenses, llantas</td></tr>
+      <tr><td>atmósfera estándar</td><td>atm</td><td class="num">101,325 kPa</td><td>Química, termodinámica</td></tr>
+      <tr><td>kilogramo-fuerza por cm²</td><td>kgf/cm²</td><td class="num">98,0665 kPa</td><td>Calderas e hidráulica antiguas</td></tr>
+      <tr><td>milímetro de mercurio</td><td>mmHg</td><td class="num">133,322 Pa</td><td>Vacío, medicina</td></tr>
+      <tr><td>pulgada de columna de agua</td><td>inH₂O</td><td class="num">249,089 Pa</td><td>Ventilación, tiro de calderas, nivel</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><b>Atención</b><p>El sufijo importa. «psig» es manométrica y «psia» es absoluta. Un transmisor de 0–100 psia puesto en una línea que indica 0–100 psig tendrá un error de casi 13 psi en Cartago.</p></div>
+</section>
+
+<!-- ================= SIM TIPOS ================= -->
+<section class="page" id="simtipos" data-sec="II · Tipos y unidades" data-title="Conversor y referencias" hidden>
+  <p class="eyebrow">Sección II · Simulador</p>
+  <h1>Conversor de unidades y referencias</h1>
+  <p class="lead">Escribe una lectura, elige su unidad y su referencia, y ubica el instrumento en una ciudad. El simulador calcula las presiones absoluta, manométrica y de vacío, y la lectura en todas las unidades.</p>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="u-v">Lectura del instrumento</label><div class="row"><input type="text" id="u-v" value="85" inputmode="decimal" style="flex:1" aria-label="Valor"><select id="u-u" style="flex:1" aria-label="Unidad"></select></div></div>
+      <div class="ctrl"><label>Referencia de la lectura</label><div class="seg" id="u-ref"><button data-v="man" class="on">Manométrica</button><button data-v="abs">Absoluta</button><button data-v="vac">Vacío</button></div></div>
+      <div class="ctrl"><label for="u-h">Altitud del lugar <output id="u-ho"></output></label><input type="range" id="u-h" min="0" max="3000" step="1" value="917"></div>
+      <div class="row" id="u-cities" style="gap:6px"></div>
+      <div class="kpis" id="u-k"></div>
+    </div>
+    <div class="card"><div id="u-ref-svg"></div></div>
+  </div>
+  <h2>La lectura en todas las unidades</h2>
+  <div class="tbl"><table><thead><tr><th>Unidad</th><th>Nombre</th><th class="num">Absoluta</th><th class="num">Manométrica</th></tr></thead><tbody id="u-tab"></tbody></table></div>
+  <h2>Presión atmosférica según la altitud</h2>
+  <p>Curva de la atmósfera estándar con las ciudades de la región. Selecciona la flecha de la barra y toca la curva para leer valores.</p>
+  <div id="u-plot"></div>
+</section>
+
+<!-- ================= HIDROSTÁTICA ================= -->
+<section class="page" id="hidro" data-sec="III · Principio hidrostático" data-title="Principio hidrostático" hidden>
+  <p class="eyebrow">Sección III · Principio hidrostático</p>
+  <h1>La presión de una columna de líquido</h1>
+  <p class="lead">En un fluido en reposo, la presión aumenta con la profundidad porque cada capa soporta el peso del líquido que tiene encima. Solo importa la altura vertical, no la forma del recipiente ni el volumen.</p>
+  <div class="formula">\[ P = P_0 + \rho\,g\,h \qquad\Longrightarrow\qquad P_{\text{man}} = \rho\,g\,h \]<small>\(\rho\): densidad del líquido (kg/m³) · \(g\): aceleración de la gravedad (9,7778 m/s² en Cartago; 9,80665 m/s² estándar) · \(h\): profundidad bajo la superficie (m) · \(P_0\): presión sobre la superficie.</small></div>
+  <h2>Consecuencias prácticas</h2>
+  <div class="grid3">
+    <div class="card"><h3 style="margin-top:0">Paradoja hidrostática</h3><p>Tres recipientes de formas distintas llenos hasta la misma altura tienen la misma presión en el fondo, aunque contengan volúmenes muy diferentes.</p></div>
+    <div class="card"><h3 style="margin-top:0">Medición de nivel</h3><p>Si se conoce la densidad, un transmisor de presión en el fondo del tanque mide el nivel: \(h = P/(\rho g)\). Es el método más usado en tanques abiertos.</p></div>
+    <div class="card"><h3 style="margin-top:0">Columnas como patrón</h3><p>Una columna de líquido de densidad conocida es un patrón primario de presión. De ahí vienen unidades como mmHg e inH₂O.</p></div>
+  </div>
+  <h2>Manómetro en U</h2>
+  <div class="grid2 fig-row">
+    <figure class="fig"><img class="diagrama" src="img/manometro-u.svg" alt="Manómetro en U con presiones P1 y P2 y desnivel h del líquido manométrico" width="360" height="300"><figcaption>El desnivel \(h\) del líquido manométrico mide la diferencia de presión.</figcaption></figure>
+    <div>
+      <p>Al aplicar presiones distintas en las dos ramas, el líquido manométrico se desplaza hasta que el peso de la columna de desnivel equilibra la diferencia de presión. Igualando presiones en el nivel inferior del líquido:</p>
+      <div class="formula">\[ P_1 - P_2 = (\rho_m - \rho_f)\,g\,h \]<small>\(\rho_m\): líquido manométrico · \(\rho_f\): fluido del proceso sobre él. Si el fluido es aire, \(\rho_f\) se desprecia.</small></div>
+      <p>El <strong>manómetro inclinado</strong> amplía la escala para presiones pequeñas: la columna recorre una longitud \(L\) sobre un tubo inclinado un ángulo \(\theta\), y \(h = L\sin\theta\). Con \(\theta = 10^\circ\) la lectura se amplía 5,8 veces.</p>
+    </div>
+  </div>
+  <h2>Densidades de referencia a 20 °C</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Líquido</th><th class="num">ρ (kg/m³)</th><th class="num">kPa por metro (g = 9,7778)</th><th>Uso</th></tr></thead>
+    <tbody id="h-dens"></tbody>
+  </table></div>
+</section>
+
+<!-- ================= SIM HIDRO ================= -->
+<section class="page" id="simhidro" data-sec="III · Principio hidrostático" data-title="Simulador hidrostático" hidden>
+  <p class="eyebrow">Sección III · Simulador</p>
+  <h1>Tanque y manómetro en U</h1>
+  <p class="lead">Elige el líquido, la altura y el punto de medición. El tanque puede estar abierto o presurizado con un colchón de gas.</p>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="hd-f">Líquido del tanque</label><select id="hd-f"></select></div>
+      <div class="ctrl"><label for="hd-H">Nivel del líquido <output id="hd-Ho"></output></label><input type="range" id="hd-H" min="0" max="10" step="0.05" value="6"></div>
+      <div class="ctrl"><label for="hd-y">Profundidad del punto de medición <output id="hd-yo"></output></label><input type="range" id="hd-y" min="0" max="100" step="1" value="100"></div>
+      <div class="ctrl"><label for="hd-p0">Presión del gas sobre la superficie <output id="hd-p0o"></output></label><input type="range" id="hd-p0" min="0" max="200" step="1" value="0"></div>
+      <div class="kpis" id="hd-k"></div>
+    </div>
+    <div class="card tankbox"><div id="hd-tank"></div></div>
+  </div>
+  <div id="hd-plot"></div>
+  <h2>Manómetro en U e inclinado</h2>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="mu-m">Líquido manométrico</label><select id="mu-m"><option value="mercurio">Mercurio · 13 546 kg/m³</option><option value="agua" selected>Agua · 998 kg/m³</option><option value="rojo">Aceite rojo · 827 kg/m³</option></select></div>
+      <div class="ctrl"><label>Fluido sobre el líquido manométrico</label><div class="seg" id="mu-f"><button data-v="aire" class="on">Aire</button><button data-v="agua">Agua</button></div></div>
+      <div class="ctrl"><label for="mu-dp">Diferencia de presión P₁ − P₂ <output id="mu-dpo"></output></label><input type="range" id="mu-dp" min="0" max="5000" step="10" value="1200"></div>
+      <div class="ctrl"><label for="mu-th">Inclinación de la rama de lectura <output id="mu-tho"></output></label><input type="range" id="mu-th" min="5" max="90" step="1" value="90"></div>
+      <div class="kpis" id="mu-k"></div>
+    </div>
+    <div class="card tankbox"><div id="mu-svg"></div></div>
+  </div>
+</section>
+
+<!-- ================= TRANSDUCTORES ================= -->
+<section class="page" id="trans" data-sec="IV · Transductores" data-title="Transductores de presión" hidden>
+  <p class="eyebrow">Sección IV · Transductores de presión</p>
+  <h1>De la deformación a la señal eléctrica</h1>
+  <p class="lead">Casi todos los transductores de presión tienen dos etapas: un elemento elástico que se deforma con la presión y un sensor que convierte esa deformación en una magnitud eléctrica.</p>
+  <h2>Elementos elásticos primarios</h2>
+  <div class="grid2 fig-row">
+    <figure class="fig"><img class="diagrama" src="img/bourdon.svg" alt="Mecanismo del manómetro Bourdon: tubo en C, biela, sector dentado, piñón y aguja" width="360" height="300"><figcaption>El tubo Bourdon tiende a enderezarse con la presión y mueve la aguja por medio de un sector dentado.</figcaption></figure>
+    <div class="stack">
+      <div><h3 style="margin-top:0">Tubo Bourdon</h3><p>Tubo de sección ovalada curvado en C, en espiral o en hélice. La presión interna tiende a volverlo circular y lo endereza. Cubre desde 0,6 bar hasta 1600 bar y es el manómetro de carátula de toda planta.</p></div>
+      <div><h3>Fuelle</h3><p>Cilindro corrugado que se alarga con la presión. Es sensible a presiones bajas (de unos pocos kPa) y se usa en registradores y controladores neumáticos.</p></div>
+      <div><h3>Diafragma</h3><p>Lámina circular empotrada en su borde. Su deflexión es pequeña y se mide con galgas, piezorresistencias o capacitancia. Es la base de los transmisores electrónicos.</p></div>
+    </div>
+  </div>
+  <h2>Galgas extensiométricas sobre un diafragma</h2>
+  <p>Una galga cambia su resistencia con la deformación unitaria \(\varepsilon\) según su factor de galga \(GF \approx 2\). En un diafragma circular empotrado de radio \(a\) y espesor \(t\), el centro se estira y el borde se comprime con el doble de deformación:</p>
+  <div class="formula">\[ \frac{\Delta R}{R} = GF\,\varepsilon \qquad\quad \varepsilon_{\text{centro}} = \frac{3(1-\nu^2)\,P\,a^2}{8\,E\,t^2} \qquad\quad \varepsilon_{\text{borde}} = -2\,\varepsilon_{\text{centro}} \]
+  \[ w_0 = \frac{3(1-\nu^2)\,P\,a^4}{16\,E\,t^3} \qquad\qquad \frac{V_o}{V_{exc}} = \frac{GF}{2}\left(\varepsilon_{\text{centro}} - \varepsilon_{\text{borde}}\right) \]<small>\(E\): módulo de Young · \(\nu\): coeficiente de Poisson · \(w_0\): deflexión del centro. La teoría lineal vale mientras \(w_0\) sea menor que la cuarta parte del espesor.</small></div>
+  <figure class="fig"><img class="diagrama" src="img/diafragma-galgas.svg" alt="Corte de un diafragma con dos galgas en el centro en tracción y dos en el borde en compresión conectadas en puente completo" width="640" height="260"><figcaption>Dos galgas en el centro (tracción) y dos en el borde (compresión) forman un puente completo: las cuatro suman señal y se compensan en temperatura.</figcaption></figure>
+  <h2>Otros principios de transducción</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Principio</th><th>Cómo funciona</th><th>Ventajas</th><th>Limitaciones</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Piezorresistivo de silicio</strong></td><td>Resistencias difundidas en un diafragma de silicio; el efecto piezorresistivo es 50 a 100 veces mayor que en una galga metálica.</td><td>Alta sensibilidad, bajo costo, integra acondicionamiento (MPX5700, MPX5010).</td><td>Deriva con la temperatura; requiere compensación.</td></tr>
+      <tr><td><strong>Capacitivo</strong></td><td>El diafragma es una placa de un condensador: \(C = \varepsilon A/(d - \delta)\). En versión diferencial se mide \((C_1 - C_2)/(C_1 + C_2)\).</td><td>Muy estable y exacto; es el principio de muchos transmisores de presión diferencial.</td><td>Electrónica más compleja; sensible a capacitancias parásitas.</td></tr>
+      <tr><td><strong>Piezoeléctrico</strong></td><td>Un cristal de cuarzo genera carga \(Q = d_{33} F\) al comprimirse.</td><td>Respuesta de hasta cientos de kHz; ideal para explosiones y combustión.</td><td>Solo mide presiones dinámicas; la carga se fuga en régimen estático.</td></tr>
+      <tr><td><strong>Resonante</strong></td><td>La presión cambia la frecuencia de vibración de un elemento de silicio.</td><td>Salida en frecuencia, exactitud de 0,01 %.</td><td>Costo alto.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= SIM DIAFRAGMA ================= -->
+<section class="page" id="simdiaf" data-sec="IV · Transductores" data-title="Simulador de diafragma con galgas" hidden>
+  <p class="eyebrow">Sección IV · Simulador</p>
+  <h1>Diseño de un diafragma con galgas</h1>
+  <p class="lead">Ajusta el radio, el espesor y el material del diafragma. El simulador calcula la deformación de las galgas, la deflexión, el esfuerzo y la salida del puente, y te avisa cuándo el diseño deja de ser lineal o se acerca a la fluencia del material.</p>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="df-P">Presión aplicada <output id="df-Po"></output></label><input type="range" id="df-P" min="0" max="5000" step="10" value="1000"></div>
+      <div class="ctrl"><label for="df-m">Material</label><select id="df-m"></select></div>
+      <div class="ctrl"><label for="df-a">Radio del diafragma a <output id="df-ao"></output></label><input type="range" id="df-a" min="4" max="20" step="0.5" value="10"></div>
+      <div class="ctrl"><label for="df-t">Espesor t <output id="df-to"></output></label><input type="range" id="df-t" min="0.2" max="3" step="0.05" value="1"></div>
+      <div class="ctrl"><label for="df-gf">Factor de galga GF <output id="df-gfo"></output></label><input type="range" id="df-gf" min="1.8" max="2.2" step="0.01" value="2.1"></div>
+      <div class="ctrl"><label for="df-v">Excitación del puente <output id="df-vo"></output></label><input type="range" id="df-v" min="1" max="10" step="0.5" value="10"></div>
+    </div>
+    <div class="stack" style="min-width:0">
+      <div class="kpis" id="df-k"></div>
+      <div class="card"><div id="df-svg"></div></div>
+    </div>
+  </div>
+  <h2>Salida del puente frente a la presión</h2>
+  <p>La recta es la respuesta lineal de la teoría de placas delgadas. Las líneas verticales marcan dónde la deflexión llega a la cuarta parte del espesor y dónde el esfuerzo alcanza dos tercios de la fluencia, el límite de diseño usual.</p>
+  <div id="df-plot"></div>
+</section>
+
+<!-- ================= SIM PIEZO ================= -->
+<section class="page" id="simpiezo" data-sec="IV · Transductores" data-title="Sensor piezorresistivo y ADC" hidden>
+  <p class="eyebrow">Sección IV · Simulador</p>
+  <h1>Sensor piezorresistivo integrado con ADC</h1>
+  <p class="lead">Los sensores MPX de NXP integran el diafragma de silicio, la compensación de temperatura y el amplificador. Su salida es proporcional a la alimentación, así que el ADC debe usar la misma tensión como referencia.</p>
+  <div class="formula">\[ \text{MPX5700AP:}\quad V_{out} = V_s\,(0{,}0012858\,P + 0{,}04) \qquad\qquad \text{MPX5010DP:}\quad V_{out} = V_s\,(0{,}09\,P + 0{,}04) \]<small>\(P\) en kPa. El MPX5700AP mide presión absoluta de 15 a 700 kPa con error de ±2,5 % del alcance de salida; el MPX5010DP mide presión diferencial de 0 a 10 kPa con error de ±5 %.</small></div>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label>Sensor</label><div class="seg" id="pz-s"><button data-v="5700AP" class="on">MPX5700AP</button><button data-v="5010DP">MPX5010DP</button></div></div>
+      <div class="ctrl"><label for="pz-P">Presión aplicada <output id="pz-Po"></output></label><input type="range" id="pz-P" min="15" max="700" step="1" value="350"></div>
+      <div class="ctrl"><label for="pz-vs">Alimentación real V<sub>s</sub> <output id="pz-vso"></output></label><input type="range" id="pz-vs" min="4.75" max="5.25" step="0.01" value="4.9"></div>
+      <div class="ctrl"><label for="pz-b">Resolución del ADC</label><select id="pz-b"><option value="10" selected>10 bits (Arduino UNO)</option><option value="12">12 bits</option><option value="16">16 bits (ADS1115)</option></select></div>
+      <div class="ctrl"><label>Referencia del ADC</label><div class="seg" id="pz-ref"><button data-v="rat" class="on">Igual a V<sub>s</sub></button><button data-v="fix">Fija de 5,000 V</button></div></div>
+      <p class="muted" style="font-size:12.5px;margin:0">El firmware convierte la cuenta suponiendo V<sub>s</sub> = 5,00 V, como en la hoja de datos.</p>
+    </div>
+    <div class="stack" style="min-width:0">
+      <div class="kpis" id="pz-k"></div>
+      <div id="pz-plot"></div>
+    </div>
+  </div>
+  <div class="callout"><b>Pregunta</b><p>Cambia la alimentación a 4,80 V con la referencia fija y luego con la referencia igual a V<sub>s</sub>. ¿Por qué la medición ratiométrica elimina el error de la fuente?</p></div>
+</section>
+
+<!-- ================= TRANSMISIÓN / NIVEL ================= -->
+<section class="page" id="acond" data-sec="V · Transmisión" data-title="Transmisor de 4–20 mA y nivel" hidden>
+  <p class="eyebrow">Sección V · Transmisión de la señal</p>
+  <h1>Transmisor de presión diferencial para nivel</h1>
+  <p class="lead">Un transmisor de presión diferencial en el fondo de un tanque mide el nivel. Si el transmisor queda por debajo de la toma, la columna del tubo de conexión suma una presión que hay que restar: es la <em class="term">supresión de cero</em>. Si el lado de baja está lleno de líquido, como en tanques cerrados con pierna húmeda, aparece una <em class="term">elevación de cero</em>.</p>
+  <div class="formula">\[ \Delta P = \rho\,g\,(h + d) - \rho_w\,g\,H_w \qquad \mathrm{LRV} = \Delta P(h = 0) \qquad \mathrm{URV} = \Delta P(h = H) \qquad I = 4 + 16\,\frac{\Delta P - \mathrm{LRV}}{\mathrm{URV} - \mathrm{LRV}} \]<small>\(d\): distancia del transmisor bajo la toma · \(\rho_w, H_w\): densidad y altura del líquido en la pierna húmeda del lado de baja.</small></div>
+  <div class="sim">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="lv-f">Líquido del tanque</label><select id="lv-f"></select></div>
+      <div class="ctrl"><label for="lv-H">Rango de nivel H <output id="lv-Ho"></output></label><input type="range" id="lv-H" min="0.5" max="8" step="0.1" value="3"></div>
+      <div class="ctrl"><label for="lv-h">Nivel actual <output id="lv-ho"></output></label><input type="range" id="lv-h" min="0" max="100" step="0.5" value="60"></div>
+      <div class="ctrl"><label for="lv-d">Transmisor bajo la toma, d <output id="lv-do"></output></label><input type="range" id="lv-d" min="0" max="2" step="0.05" value="0.5"></div>
+      <div class="ctrl"><label>Lado de baja presión</label><div class="seg" id="lv-low"><button data-v="seco" class="on">Abierto a la atmósfera</button><button data-v="humedo">Pierna húmeda</button></div></div>
+      <div class="ctrl"><label for="lv-hw">Altura de la pierna húmeda H<sub>w</sub> <output id="lv-hwo"></output></label><input type="range" id="lv-hw" min="0.5" max="10" step="0.1" value="4"></div>
+      <label class="check"><input type="checkbox" id="lv-brk"> Simular cable roto</label>
+    </div>
+    <div class="stack" style="min-width:0">
+      <div class="kpis" id="lv-k"></div>
+      <div class="card tankbox"><div id="lv-svg"></div></div>
+    </div>
+  </div>
+  <div id="lv-plot"></div>
+  <div class="callout"><b>NAMUR NE 43</b><p>Las corrientes menores o iguales a 3,6 mA y mayores o iguales a 21 mA indican falla del transmisor o del lazo. Un controlador bien configurado distingue así un tanque vacío (4 mA) de un cable roto.</p></div>
+</section>
+
+<!-- ================= COMPARA ================= -->
+<section class="page" id="compara" data-sec="V · Transmisión" data-title="Comparación y selección" hidden>
+  <p class="eyebrow">Sección V · Criterios de selección</p>
+  <h1>¿Qué instrumento elegir?</h1>
+  <p class="lead">La selección depende del rango, del tipo de presión, de la exactitud, de la velocidad de respuesta, del fluido y de si se necesita una señal eléctrica para el sistema de control.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Criterio</th><th>Bourdon</th><th>Diafragma con galgas</th><th>Piezorresistivo de silicio</th><th>Capacitivo</th><th>Piezoeléctrico</th></tr></thead>
+    <tbody>
+      <tr><td>Rango típico</td><td>0,6 a 1600 bar</td><td>1 a 7000 bar</td><td>1 kPa a 70 MPa</td><td>0,1 kPa a 40 MPa</td><td>Hasta 1000 MPa (dinámica)</td></tr>
+      <tr><td>Exactitud típica</td><td>0,6 a 2,5 % FS</td><td>0,1 a 0,5 % FS</td><td>0,25 a 2,5 % FS</td><td>0,04 a 0,1 % FS</td><td>1 % FS</td></tr>
+      <tr><td>Respuesta</td><td>Lenta</td><td>Rápida</td><td>Rápida</td><td>Media</td><td>Muy rápida (kHz)</td></tr>
+      <tr><td>Salida</td><td>Aguja</td><td>mV/V</td><td>V o mA integrados</td><td>mA, HART</td><td>Carga (pC)</td></tr>
+      <tr><td>Presión estática</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>No</td></tr>
+      <tr><td>Energía externa</td><td>No necesita</td><td>Excitación</td><td>Alimentación</td><td>Alimentación</td><td>Amplificador de carga</td></tr>
+      <tr><td>Costo relativo</td><td>Muy bajo</td><td>Medio</td><td>Bajo</td><td>Alto</td><td>Alto</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Casos de selección</h2>
+  <p>Elige el instrumento que recomendarías y compara tu criterio con la justificación.</p>
+  <div class="scen" id="scen"></div>
+</section>
+
+<!-- ================= LAB ID ================= -->
+<section class="page" id="labid" data-sec="VI · Laboratorio virtual" data-title="Ingreso al laboratorio" hidden>
+  <p class="eyebrow">Sección VI · Laboratorio virtual</p>
+  <h1>Ingreso al laboratorio</h1>
+  <p class="lead">Tu código estudiantil asigna un banco de medición. Cada banco tiene un manómetro con sus propios errores, un líquido desconocido distinto y un sensor piezorresistivo con desviaciones respecto a la hoja de datos. Por eso tus resultados serán únicos.</p>
+  <div class="grid2">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="id-name">Nombre completo</label><input type="text" id="id-name" placeholder="Ej.: María Fernanda Ríos Gómez" autocomplete="name"></div>
+      <div class="ctrl"><label for="id-code">Código estudiantil</label><input type="text" id="id-code" placeholder="Ej.: 202458731" inputmode="numeric"></div>
+      <div class="ctrl"><label for="id-mates">Compañeros de grupo (opcional)</label><input type="text" id="id-mates" placeholder="Nombres separados por comas"></div>
+      <div class="grid2" style="gap:10px">
+        <div class="ctrl"><label for="id-group">Grupo</label><input type="text" id="id-group" placeholder="Ej.: 50"></div>
+        <div class="ctrl"><label for="id-date">Fecha</label><input type="text" id="id-date"></div>
+      </div>
+      <button class="btn gold" id="id-go">Asignar banco de medición</button>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Tu banco</h3>
+      <div id="id-bench" class="empty">Escribe tu código y pulsa «Asignar banco de medición».</div>
+      <div class="callout warn" style="margin-bottom:0"><b>Importante</b><p>Si cambias el código después de tomar datos, el banco cambia y debes repetir las lecturas. Los datos se guardan en este navegador; si cambias de equipo, empieza de nuevo.</p></div>
+    </div>
+  </div>
+  <h2>Cómo funciona el laboratorio</h2>
+  <ol class="steps">
+    <li>Fija la condición de la prueba con el control deslizante: masa sobre el pistón, nivel de la columna o presión del calibrador. Los indicadores tardan un momento en estabilizarse.</li>
+    <li>Pulsa <strong>Registrar lectura</strong> para guardar en la tabla lo que muestran los instrumentos en ese instante.</li>
+    <li>Toma las lecturas mínimas que pide cada práctica, repartidas en todo el rango.</li>
+    <li>Pulsa <strong>Analizar datos</strong>. Se ajustan los modelos por mínimos cuadrados y se dibujan los resultados.</li>
+    <li>Escribe tu análisis en el campo de cada práctica. Todo se recopila en el informe.</li>
+  </ol>
+</section>
+
+<!-- ================= PRÁCTICA 1 ================= -->
+<section class="page" id="lab1" data-sec="VI · Laboratorio virtual" data-title="Práctica 1 · Calibración de un manómetro" hidden>
+  <p class="eyebrow">Práctica 1 · Tipos de presión y unidades</p>
+  <h1>Calibración de un manómetro Bourdon</h1>
+  <p class="lead">La balanza de pesos muertos genera una presión patrón al colocar masas conocidas sobre un pistón de área conocida. El manómetro de tu banco, de 0 a 10 bar y clase 1,0, está conectado a la misma cámara de aceite.</p>
+  <div class="formula">\[ P_{\text{patrón}} = \frac{m\,g}{A_{ef}} = \frac{m \cdot 9{,}7778\ \mathrm{m/s^2}}{1{,}0000\times10^{-4}\ \mathrm{m^2}} \qquad\Rightarrow\qquad 1\ \mathrm{kg} \;\to\; 97{,}778\ \mathrm{kPa} \]</div>
+  <h3>Procedimiento</h3>
+  <ol class="steps">
+    <li>Sube la masa de 0 a 10 kg por pasos (por ejemplo 0, 2, 4, 6, 8 y 10 kg) y registra cada lectura. Es la <strong>carga ascendente</strong>.</li>
+    <li>Baja la masa por los mismos puntos hasta 0 kg y registra de nuevo. Es la <strong>carga descendente</strong>.</li>
+    <li>Necesitas al menos 10 lecturas con puntos en ambos sentidos. Analiza los datos.</li>
+  </ol>
+  <div class="bench">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="l1-sp">Masa sobre el pistón <output id="l1-spo"></output></label><input type="range" id="l1-sp" min="0" max="10" step="0.5" value="0"></div>
+      <p class="muted" id="l1-dir" style="margin:0;font-weight:700">Carga ascendente ↑</p>
+      <div class="row"><button class="btn gold" id="l1-rec">Registrar lectura</button><button class="btn" id="l1-an">Analizar datos</button><button class="btn sm" id="l1-clr">Borrar tabla</button></div>
+      <div class="lcd">
+        <span class="st" id="l1-st">Estabilizando…</span>
+        <div><span>P patrón</span><b id="l1-d1">—</b></div>
+        <div><span>Lectura</span><b id="l1-d2">—</b></div>
+        <div><span>Lectura en bar</span><b id="l1-d3">—</b></div>
+      </div>
+    </div>
+    <div class="card dialbox"><div id="l1-dial"></div></div>
+  </div>
+  <div class="tbl"><table><thead><tr><th class="num">#</th><th class="num">Masa (kg)</th><th class="num">P patrón (kPa)</th><th class="num">Lectura (kPa)</th><th class="num">Sentido</th><th></th></tr></thead><tbody id="l1-tb"></tbody></table></div>
+  <div id="l1-res" class="results"></div>
+  <h3>Preguntas orientadoras</h3>
+  <ol class="qs">
+    <li>Expresa la presión patrón máxima en kPa, bar, psi y kgf/cm². ¿Por qué la balanza no da exactamente 10 kgf/cm² con 10 kg?</li>
+    <li>¿Cuál es el error máximo de tu manómetro en kPa y en % del alcance? ¿Cumple la clase 1,0?</li>
+    <li>¿En qué zona de la escala es mayor la histéresis? Explica su origen físico en el tubo Bourdon y en el mecanismo.</li>
+    <li>Con la recta de ajuste, separa el error de cero y el error de alcance. ¿Cuál corregirías primero y cómo se hace en un manómetro real?</li>
+  </ol>
+  <div class="ctrl"><label for="l1-txt">Análisis de resultados de la práctica 1</label><textarea id="l1-txt" placeholder="Interpreta tus resultados respondiendo las preguntas orientadoras."></textarea></div>
+</section>
+
+<!-- ================= PRÁCTICA 2 ================= -->
+<section class="page" id="lab2" data-sec="VI · Laboratorio virtual" data-title="Práctica 2 · Principio hidrostático" hidden>
+  <p class="eyebrow">Práctica 2 · Principio hidrostático</p>
+  <h1>Densidad de un líquido desconocido</h1>
+  <p class="lead">Una columna de acrílico contiene un líquido desconocido. En el fondo hay una toma conectada a un manómetro digital y a un manómetro en U de mercurio. Al variar el nivel, la presión en el fondo cambia según \(P = \rho g h\), y la pendiente de esa recta revela la densidad.</p>
+  <h3>Procedimiento</h3>
+  <ol class="steps">
+    <li>Llena la columna por etapas entre 0 y 1,20 m y registra al menos <strong>8 lecturas</strong>: nivel en la regla, presión del manómetro digital y desnivel del manómetro en U.</li>
+    <li>Anota la presión del barómetro: la necesitarás para calcular la presión absoluta en el fondo.</li>
+    <li>Analiza los datos: se ajusta la recta \(P = m\,h + b\) y se calcula \(\rho = m/g\) con la gravedad local.</li>
+  </ol>
+  <div class="bench">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="l2-sp">Nivel de la columna <output id="l2-spo"></output></label><input type="range" id="l2-sp" min="0" max="1.2" step="0.01" value="0.10"></div>
+      <div class="row"><button class="btn gold" id="l2-rec">Registrar lectura</button><button class="btn" id="l2-an">Analizar datos</button><button class="btn sm" id="l2-clr">Borrar tabla</button></div>
+      <div class="lcd">
+        <span class="st" id="l2-st">Estabilizando…</span>
+        <div><span>Regla</span><b id="l2-d1">—</b></div>
+        <div><span>Manómetro digital</span><b id="l2-d2">—</b></div>
+        <div><span>Desnivel Hg</span><b id="l2-d3">—</b></div>
+        <div><span>Barómetro</span><b id="l2-d4">—</b></div>
+      </div>
+    </div>
+    <div class="card tankbox"><div id="l2-tank"></div></div>
+  </div>
+  <div class="tbl"><table><thead><tr><th class="num">#</th><th class="num">h (m)</th><th class="num">P man (kPa)</th><th class="num">Δh Hg (mm)</th><th class="num">P atm (kPa)</th><th></th></tr></thead><tbody id="l2-tb"></tbody></table></div>
+  <div id="l2-res" class="results"></div>
+  <h3>Preguntas orientadoras</h3>
+  <ol class="qs">
+    <li>¿Qué densidad obtuviste? Compárala con la tabla de la sección III e identifica el líquido.</li>
+    <li>¿Qué significa físicamente el intercepto de la recta? ¿Debería ser cero?</li>
+    <li>Calcula la presión con el desnivel del manómetro en U y compárala con la del manómetro digital. ¿Cuál instrumento tiene mejor resolución en este rango?</li>
+    <li>¿Cuál es la presión absoluta en el fondo con la columna llena? ¿Cuánto cambiaría si la práctica se hiciera en Bogotá?</li>
+  </ol>
+  <div class="ctrl"><label for="l2-txt">Análisis de resultados de la práctica 2</label><textarea id="l2-txt" placeholder="Interpreta tus resultados respondiendo las preguntas orientadoras."></textarea></div>
+</section>
+
+<!-- ================= PRÁCTICA 3 ================= -->
+<section class="page" id="lab3" data-sec="VI · Laboratorio virtual" data-title="Práctica 3 · Transductor piezorresistivo" hidden>
+  <p class="eyebrow">Práctica 3 · Transductores de presión</p>
+  <h1>Caracterización de un MPX5700AP</h1>
+  <p class="lead">El sensor está conectado a un calibrador con bomba manual y patrón digital. Mide presión absoluta, así que con la bomba en cero indica la presión atmosférica del laboratorio. Un Arduino UNO lee su salida con el ADC de 10 bits, cuya referencia es la misma alimentación \(V_s\).</p>
+  <div class="formula">\[ P_{\text{abs}} = P_{\text{atm}} + P_{\text{man}} \qquad V_{out} = V_s\,(0{,}0012858\,P_{\text{abs}} + 0{,}04) \qquad N = \operatorname{round}\!\left(\frac{V_{out}}{V_s}\cdot 1023\right) \]</div>
+  <h3>Procedimiento</h3>
+  <ol class="steps">
+    <li>Con la bomba, sube la presión manométrica de 0 a 600 kPa y registra al menos <strong>7 lecturas</strong> repartidas en el rango.</li>
+    <li>Analiza: se ajusta la recta \(V_{out} = a + b\,P_{\text{abs}}\) y se compara con la de la hoja de datos evaluada con tu \(V_s\) medida.</li>
+    <li>Con los coeficientes ajustados, escribe la ecuación que usaría el firmware para pasar de la cuenta del ADC a kPa.</li>
+  </ol>
+  <div class="bench">
+    <div class="card ctrls">
+      <div class="ctrl"><label for="l3-sp">Presión manométrica del calibrador <output id="l3-spo"></output></label><input type="range" id="l3-sp" min="0" max="600" step="10" value="0"></div>
+      <div class="row"><button class="btn gold" id="l3-rec">Registrar lectura</button><button class="btn" id="l3-an">Analizar datos</button><button class="btn sm" id="l3-clr">Borrar tabla</button></div>
+    </div>
+    <div class="lcd">
+      <span class="st" id="l3-st">Estabilizando…</span>
+      <div><span>P abs patrón</span><b id="l3-d1">—</b></div>
+      <div><span>V<sub>out</sub></span><b id="l3-d2">—</b></div>
+      <div><span>Cuenta ADC</span><b id="l3-d3">—</b></div>
+      <div><span>V<sub>s</sub> multímetro</span><b id="l3-d4">—</b></div>
+    </div>
+  </div>
+  <div class="tbl"><table><thead><tr><th class="num">#</th><th class="num">P man (kPa)</th><th class="num">P abs (kPa)</th><th class="num">V<sub>out</sub> (V)</th><th class="num">N ADC</th><th class="num">V<sub>s</sub> (V)</th><th></th></tr></thead><tbody id="l3-tb"></tbody></table></div>
+  <div id="l3-res" class="results"></div>
+  <h3>Preguntas orientadoras</h3>
+  <ol class="qs">
+    <li>¿Qué sensibilidad (mV/kPa) y qué offset obtuviste? Compáralos con la hoja de datos a tu \(V_s\).</li>
+    <li>¿Cuál es el error máximo frente a la hoja de datos en kPa y en % del alcance de salida? ¿Cumple el ±2,5 % especificado?</li>
+    <li>¿Cuántos kPa representa un bit del ADC? ¿Qué ganarías con un ADC de 16 bits?</li>
+    <li>Si el transmisor de la planta se calibra de 0 a 600 kPa manométricos, ¿qué corriente entregaría en cada punto de tu tabla?</li>
+  </ol>
+  <div class="ctrl"><label for="l3-txt">Análisis de resultados de la práctica 3</label><textarea id="l3-txt" placeholder="Interpreta tus resultados respondiendo las preguntas orientadoras."></textarea></div>
+</section>
+
+<!-- ================= EJERCICIOS ================= -->
+<section class="page" id="ejer" data-sec="VII · Ejercicios" data-title="Ejercicios con verificación" hidden>
+  <p class="eyebrow">Sección VII · Ejercicios</p>
+  <h1>Ejercicios con verificación</h1>
+  <p class="lead">Escribe tu respuesta con la coma o el punto como separador decimal y pulsa «Verificar». Se acepta una pequeña tolerancia por redondeo. El puntaje se incluye en el informe.</p>
+  <div class="row"><span class="pill" id="ex-score">0 / 13 correctos</span><button class="btn sm" id="ex-reset">Reiniciar respuestas</button></div>
+
+  <div class="ex" data-k="e1" data-tol="0.05"><div class="hd"><b>EJERCICIO 1 · Unidades</b><span class="fb"></span></div>
+    <p>Un compresor europeo indica 2,5 bar. ¿Cuántos psi son?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">psi</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(2{,}5\ \mathrm{bar} = 250\ \mathrm{kPa}\); \(250 / 6{,}894757 = \) <b class="ans" data-k="e1"></b> psi.</div></details></div>
+
+  <div class="ex" data-k="e2" data-tol="0.1"><div class="hd"><b>EJERCICIO 2 · Unidades</b><span class="fb"></span></div>
+    <p>La placa de un equipo estadounidense indica 30 psig de presión de trabajo. Exprésala en kPa.</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(30 \times 6{,}894757 = \) <b class="ans" data-k="e2"></b> kPa manométricos.</div></details></div>
+
+  <div class="ex" data-k="e3" data-tol="0.1"><div class="hd"><b>EJERCICIO 3 · Tipos de presión</b><span class="fb"></span></div>
+    <p>Un manómetro en Cartago (\(P_{\text{atm}} = 90{,}8\) kPa) indica 350 kPa. ¿Cuál es la presión absoluta?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa abs</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(P_{\text{abs}} = 90{,}8 + 350 = \) <b class="ans" data-k="e3"></b> kPa.</div></details></div>
+
+  <div class="ex" data-k="e4" data-tol="0.1"><div class="hd"><b>EJERCICIO 4 · Tipos de presión</b><span class="fb"></span></div>
+    <p>En Bogotá (\(P_{\text{atm}} = 73{,}4\) kPa) un vacuómetro indica −25 kPa. ¿Cuál es la presión absoluta en la línea?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa abs</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(P_{\text{abs}} = 73{,}4 - 25 = \) <b class="ans" data-k="e4"></b> kPa.</div></details></div>
+
+  <div class="ex" data-k="e5" data-tol="0.05"><div class="hd"><b>EJERCICIO 5 · Hidrostática</b><span class="fb"></span></div>
+    <p>Un tanque abierto contiene agua (\(\rho = 998\) kg/m³) hasta 4,5 m. Con \(g = 9{,}81\) m/s², ¿cuál es la presión manométrica en el fondo?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(P = 998 \cdot 9{,}81 \cdot 4{,}5 = 44\,056\ \mathrm{Pa} = \) <b class="ans" data-k="e5"></b> kPa.</div></details></div>
+
+  <div class="ex" data-k="e6" data-tol="0.005"><div class="hd"><b>EJERCICIO 6 · Hidrostática</b><span class="fb"></span></div>
+    <p>Un transmisor en el fondo de un tanque abierto de aceite (\(\rho = 870\) kg/m³) indica 25 kPa. Con \(g = 9{,}81\) m/s², ¿cuál es el nivel?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">m</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(h = \dfrac{P}{\rho g} = \dfrac{25\,000}{870 \cdot 9{,}81} = \) <b class="ans" data-k="e6"></b> m.</div></details></div>
+
+  <div class="ex" data-k="e7" data-tol="0.05"><div class="hd"><b>EJERCICIO 7 · Manómetro en U</b><span class="fb"></span></div>
+    <p>Un manómetro en U de mercurio (\(\rho_m = 13\,546\) kg/m³) tiene agua (\(\rho_f = 998\) kg/m³) sobre el mercurio en ambas ramas. El desnivel es de 120 mm. Con \(g = 9{,}81\) m/s², ¿cuál es la diferencia de presión?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(\Delta P = (13\,546 - 998)\cdot 9{,}81 \cdot 0{,}120 = \) <b class="ans" data-k="e7"></b> kPa. Si se olvidara restar la densidad del agua, el resultado quedaría un 8 % por encima.</div></details></div>
+
+  <div class="ex" data-k="e8" data-tol="1"><div class="hd"><b>EJERCICIO 8 · Manómetro inclinado</b><span class="fb"></span></div>
+    <p>Un manómetro inclinado 30° con aceite rojo (\(\rho = 827\) kg/m³) mide el tiro de una caldera. La columna recorre 80 mm sobre la escala inclinada. Con \(g = 9{,}81\) m/s², ¿cuál es la diferencia de presión?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">Pa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(h = 0{,}080 \sin 30^\circ = 0{,}040\ \mathrm{m}\); \(\Delta P = 827 \cdot 9{,}81 \cdot 0{,}040 = \) <b class="ans" data-k="e8"></b> Pa.</div></details></div>
+
+  <div class="ex" data-k="e9" data-tol="1"><div class="hd"><b>EJERCICIO 9 · Balanza de pesos muertos</b><span class="fb"></span></div>
+    <p>Sobre el pistón de una balanza de pesos muertos de área efectiva 0,5 cm² hay 12 kg en total. Con \(g = 9{,}78\) m/s², ¿qué presión genera?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(P = \dfrac{12 \cdot 9{,}78}{0{,}5\times10^{-4}} = \) <b class="ans" data-k="e9"></b> kPa, es decir, unos 23,5 bar.</div></details></div>
+
+  <div class="ex" data-k="e10" data-tol="0.01"><div class="hd"><b>EJERCICIO 10 · Galgas</b><span class="fb"></span></div>
+    <p>Un puente completo tiene cuatro galgas activas con \(GF = 2{,}1\): dos a +250 µε y dos a −250 µε. La excitación es de 10 V. ¿Cuál es la tensión de salida?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">mV</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(V_o = V_{exc}\,\dfrac{GF}{4}(\varepsilon_1 - \varepsilon_2 + \varepsilon_3 - \varepsilon_4) = 10 \cdot \dfrac{2{,}1}{4}\cdot(4 \cdot 250\times10^{-6}) = \) <b class="ans" data-k="e10"></b> mV.</div></details></div>
+
+  <div class="ex" data-k="e11" data-tol="0.002"><div class="hd"><b>EJERCICIO 11 · Piezorresistivo</b><span class="fb"></span></div>
+    <p>Un MPX5700AP alimentado con 5,00 V está sometido a 400 kPa absolutos. ¿Cuál es su tensión de salida según la hoja de datos?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">V</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(V_{out} = 5\,(0{,}0012858 \cdot 400 + 0{,}04) = \) <b class="ans" data-k="e11"></b> V.</div></details></div>
+
+  <div class="ex" data-k="e12" data-tol="0.01"><div class="hd"><b>EJERCICIO 12 · Transmisión</b><span class="fb"></span></div>
+    <p>Un transmisor de presión está calibrado de 0 a 600 kPa. ¿Qué corriente entrega cuando la presión es de 450 kPa?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">mA</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>\(I = 4 + 16\cdot\dfrac{450}{600} = \) <b class="ans" data-k="e12"></b> mA.</div></details></div>
+
+  <div class="ex" data-k="e13" data-tol="0.02"><div class="hd"><b>EJERCICIO 13 · Nivel por presión diferencial</b><span class="fb"></span></div>
+    <p>Un transmisor de presión diferencial mide el nivel de un tanque abierto de agua (\(\rho = 998\) kg/m³) de 0 a 3 m. Está instalado 0,5 m por debajo de la toma del fondo y su lado de baja está abierto. Con \(g = 9{,}81\) m/s², ¿cuál debe ser el LRV?</p>
+    <div class="ans-row"><input type="text" inputmode="decimal" aria-label="Respuesta"><span class="unit">kPa</span><button class="btn sm">Verificar</button></div>
+    <details><summary>Ver solución</summary><div>Con el tanque vacío, el transmisor aún ve la columna de 0,5 m del tubo: \(\mathrm{LRV} = 998\cdot 9{,}81\cdot 0{,}5 = \) <b class="ans" data-k="e13"></b> kPa. El URV es \(998\cdot 9{,}81\cdot 3{,}5 = 34{,}27\) kPa. Es una supresión de cero.</div></details></div>
+</section>
+
+<!-- ================= ESTRUCTURA INFORME ================= -->
+<section class="page" id="infest" data-sec="VIII · Informe" data-title="Estructura y evaluación del informe" hidden>
+  <p class="eyebrow">Sección VIII · Informe</p>
+  <h1>Estructura y evaluación del informe</h1>
+  <p class="lead">El informe se entrega en formato de artículo técnico, en máximo ocho páginas. El generador de la página siguiente arma el documento con tus datos, tablas y gráficas; tú completas el resumen, el análisis y las conclusiones.</p>
+  <h2>Estructura</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Sección</th><th>Contenido esperado</th></tr></thead>
+    <tbody>
+      <tr><td>1. Resumen</td><td>Qué se midió, cómo y cuál fue el resultado principal, en 150 palabras.</td></tr>
+      <tr><td>2. Objetivos</td><td>General y específicos de la guía.</td></tr>
+      <tr><td>3. Marco teórico</td><td>Tipos de presión, principio hidrostático, balanza de pesos muertos y transductores, con citas.</td></tr>
+      <tr><td>4. Montaje y procedimiento</td><td>Diagrama del montaje con simbología ISA y descripción de los pasos.</td></tr>
+      <tr><td>5. Resultados</td><td>Tablas de datos, parámetros ajustados con sus unidades y gráficas con ejes rotulados.</td></tr>
+      <tr><td>6. Análisis</td><td>Respuesta a las preguntas orientadoras de cada práctica, comparación con normas y hojas de datos.</td></tr>
+      <tr><td>7. Conclusiones</td><td>Entre tres y cinco conclusiones que se deduzcan de tus datos.</td></tr>
+      <tr><td>8. Referencias</td><td>Normas y textos consultados, en formato IEEE o APA.</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Rúbrica de evaluación</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Criterio</th><th class="num">Peso</th><th>Desempeño superior</th></tr></thead>
+    <tbody>
+      <tr><td>Toma y presentación de datos</td><td class="num">20 %</td><td>Lecturas suficientes, en ambos sentidos de carga y bien distribuidas; tablas con unidades.</td></tr>
+      <tr><td>Ajuste de modelos y cálculos</td><td class="num">25 %</td><td>Parámetros correctos con R²; densidad identificada; comparación cuantitativa con la clase y la hoja de datos.</td></tr>
+      <tr><td>Análisis e interpretación</td><td class="num">25 %</td><td>Explica histéresis, errores de cero y alcance, referencia absoluta o manométrica y resolución del ADC.</td></tr>
+      <tr><td>Ejercicios</td><td class="num">15 %</td><td>Al menos 11 de 13 ejercicios correctos, con procedimiento.</td></tr>
+      <tr><td>Redacción y formato</td><td class="num">15 %</td><td>Texto técnico claro, figuras numeradas y citadas, referencias completas.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= GENERADOR ================= -->
+<section class="page" id="informe" data-sec="VIII · Informe" data-title="Generador del informe" hidden>
+  <p class="eyebrow">Sección VIII · Informe</p>
+  <h1>Generador del informe</h1>
+  <p class="lead">El informe reúne tu identificación, las tablas de las tres prácticas, los parámetros ajustados, las gráficas, tu análisis y el puntaje de los ejercicios. Descárgalo en PDF listo para imprimir o entregar, o cópialo como texto si prefieres editarlo en Word.</p>
+  <div class="grid2">
+    <div class="ctrl"><label for="inf-res">Resumen</label><textarea id="inf-res" placeholder="Qué se midió, cómo y cuál fue el resultado principal."></textarea></div>
+    <div class="ctrl"><label for="inf-con">Conclusiones generales</label><textarea id="inf-con" placeholder="Entre tres y cinco conclusiones basadas en tus datos."></textarea></div>
+  </div>
+  <div class="row" style="margin:16px 0 6px"><button class="btn gold" id="inf-pdf">Descargar informe en PDF</button><button class="btn" id="inf-gen">Actualizar borrador</button><button class="btn" id="inf-copy">Copiar informe (texto)</button><button class="btn" id="inf-csv">Copiar datos (CSV)</button></div>
+  <p class="muted" style="font-size:13px;margin:0 0 16px">El PDF incluye portada, tablas numeradas, las gráficas de las tres prácticas, tu análisis y el puntaje de los ejercicios. Puedes imprimirlo desde cualquier lector de PDF.</p>
+  <div class="paper" id="paper"></div>
+</section>
+
+<!-- ================= REFERENCIAS ================= -->
+<section class="page" id="refs" data-sec="VIII · Informe" data-title="Referencias" hidden>
+  <p class="eyebrow">Referencias</p>
+  <h1>Referencias</h1>
+  <ol>
+    <li>EN 837-1:1996. <em>Pressure gauges. Part 1: Bourdon tube pressure gauges. Dimensions, metrology, requirements and testing</em>. CEN.</li>
+    <li>EN 837-2:1997. <em>Pressure gauges. Part 2: Selection and installation recommendations for pressure gauges</em>. CEN.</li>
+    <li>ASME B40.100-2022. <em>Pressure Gauges and Gauge Attachments</em>. American Society of Mechanical Engineers.</li>
+    <li>ANSI/ISA-5.1-2009. <em>Instrumentation Symbols and Identification</em>. International Society of Automation.</li>
+    <li>NAMUR NE 43. <em>Standardization of the signal level for the failure information of digital transmitters</em>.</li>
+    <li>NXP Semiconductors. <em>MPX5700, Integrated Silicon Pressure Sensor, On-Chip Signal Conditioned, Temperature Compensated and Calibrated</em>. Hoja de datos.</li>
+    <li>NXP Semiconductors. <em>MPX5010, Integrated Silicon Pressure Sensor, On-Chip Signal Conditioned, Temperature Compensated and Calibrated</em>. Hoja de datos.</li>
+    <li>NOAA, NASA y USAF (1976). <em>U.S. Standard Atmosphere, 1976</em>. Washington, D.C.</li>
+    <li>Creus Solé, A. (2010). <em>Instrumentación industrial</em> (8.ª ed.). Marcombo.</li>
+    <li>Pallás Areny, R. (2003). <em>Sensores y acondicionadores de señal</em> (4.ª ed.). Marcombo.</li>
+    <li>Timoshenko, S., y Woinowsky-Krieger, S. (1959). <em>Theory of Plates and Shells</em> (2.ª ed.). McGraw-Hill.</li>
+    <li>Fraden, J. (2016). <em>Handbook of Modern Sensors</em> (5.ª ed.). Springer.</li>
+  </ol>
+  <div class="callout"><b>Nota técnica</b><p>Las ecuaciones de los sensores MPX5700AP y MPX5010DP son las de sus hojas de datos. El diafragma usa la teoría de placas circulares delgadas empotradas. La presión atmosférica sigue la atmósfera estándar ISA, y la gravedad de Cartago (9,7778 m/s²) se calculó con la fórmula internacional de la gravedad para 4,75° N y 917 m.</p></div>
+</section>
+
+  <nav class="pager" id="pager"></nav>
+  </div><!-- /book -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<script src="js/lib/jspdf.umd.min.js"></script>
+<script src="js/lib/jspdf.plugin.autotable.min.js"></script>
+<script src="js/mathjax-config.js"></script>
+<script src="js/lib/tex-svg.js" async></script>
+<script src="js/core.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

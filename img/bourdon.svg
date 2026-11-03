@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+<title>Mecanismo del manómetro Bourdon</title>
+<rect width="360" height="300" rx="10" fill="#ffffff"/>
+<circle cx="180" cy="140" r="122" fill="none" stroke="#d9d3d5" stroke-width="2"/>
+<path d="M150 248V222A92 92 0 1 1 268 172" fill="none" stroke="#b5121b" stroke-width="12" stroke-linecap="round"/>
+<rect x="134" y="246" width="32" height="40" rx="3" fill="#5e5a63"/>
+<text x="172" y="282" font-size="12" fill="#1d1a1f">entrada de presión</text>
+<line x1="268" y1="172" x2="214" y2="190" stroke="#1d1a1f" stroke-width="3"/>
+<path d="M214 190L196 160A34 34 0 0 1 230 168Z" fill="#e3a43a" stroke="#8a5f06" stroke-width="1.2"/>
+<circle cx="180" cy="140" r="9" fill="#8a5f06"/>
+<line x1="180" y1="140" x2="112" y2="78" stroke="#1d1a1f" stroke-width="3.2" stroke-linecap="round"/>
+<circle cx="180" cy="140" r="4" fill="#ffffff"/>
+<text x="276" y="166" font-size="12" fill="#b5121b" font-weight="700">extremo libre</text>
+<text x="228" y="214" font-size="12" fill="#1d1a1f">biela</text>
+<text x="230" y="150" font-size="12" fill="#8a5f06">sector</text>
+<text x="190" y="128" font-size="12" fill="#8a5f06">piñón</text>
+<text x="76" y="72" font-size="12" fill="#1d1a1f">aguja</text>
+<text x="56" y="120" font-size="12" fill="#b5121b" font-weight="700">tubo Bourdon</text>
+</svg>

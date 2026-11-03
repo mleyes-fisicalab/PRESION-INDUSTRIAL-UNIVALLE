@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+<title>Diafragma con galgas en puente completo</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f6fd6"/></marker></defs>
+<rect width="640" height="260" rx="10" fill="#ffffff"/>
+<rect x="20" y="60" width="46" height="80" fill="#9a9399"/><rect x="334" y="60" width="46" height="80" fill="#9a9399"/>
+<path d="M66 100Q200 150 334 100L334 112Q200 162 66 112Z" fill="#c9c3c6" stroke="#5e5a63"/>
+<rect x="180" y="132" width="40" height="7" rx="2" fill="#b5121b"/>
+<rect x="72" y="100" width="34" height="7" rx="2" fill="#1f6fd6"/><rect x="294" y="100" width="34" height="7" rx="2" fill="#1f6fd6"/>
+<g stroke="#1f6fd6" stroke-width="2"><line x1="120" y1="190" x2="120" y2="128" marker-end="url(#a)"/><line x1="200" y1="200" x2="200" y2="150" marker-end="url(#a)"/><line x1="280" y1="190" x2="280" y2="128" marker-end="url(#a)"/></g>
+<text x="200" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#1f6fd6">Presión P</text>
+<text x="200" y="40" text-anchor="middle" font-size="12" fill="#b5121b" font-weight="700">R1, R3 en el centro: tracción (+ε)</text>
+<line x1="200" y1="46" x2="200" y2="128" stroke="#b5121b" stroke-dasharray="3 3"/>
+<text x="20" y="40" font-size="12" fill="#1f6fd6" font-weight="700">R2, R4 en el borde: compresión (−2ε)</text>
+<line x1="88" y1="46" x2="88" y2="98" stroke="#1f6fd6" stroke-dasharray="3 3"/>
+<g transform="translate(440 40)" font-size="13" font-weight="700">
+<path d="M80 10L150 80L80 150L10 80Z" fill="none" stroke="#1d1a1f" stroke-width="2"/>
+<text x="30" y="40" fill="#b5121b">R1</text><text x="120" y="40" fill="#1f6fd6">R2</text><text x="120" y="130" fill="#b5121b">R3</text><text x="30" y="130" fill="#1f6fd6">R4</text>
+<circle cx="80" cy="10" r="4" fill="#1d1a1f"/><circle cx="80" cy="150" r="4" fill="#1d1a1f"/><circle cx="10" cy="80" r="4" fill="#1d1a1f"/><circle cx="150" cy="80" r="4" fill="#1d1a1f"/>
+<text x="92" y="8" font-weight="400" fill="#1d1a1f">+V<tspan font-size="10">exc</tspan></text><text x="92" y="166" font-weight="400" fill="#1d1a1f">0 V</text>
+<text x="-24" y="84" font-weight="400" fill="#1d1a1f">V₋</text><text x="158" y="84" font-weight="400" fill="#1d1a1f">V₊</text>
+<text x="10" y="196" font-weight="400" font-size="12" fill="#1d1a1f">Vₒ = V₊ − V₋</text>
+</g>
+</svg>
